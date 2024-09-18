@@ -1,11 +1,14 @@
 package com.example.designPatterns.composite;
 
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
+@ToString
 @AllArgsConstructor
 public class Sezione implements Pagine{
     private List<Pagina> paginaList;
+    private List<Sezione> sottoSezioni;
 
 
 
@@ -17,6 +20,17 @@ public class Sezione implements Pagine{
 
     @Override
     public int getNumeroPagine() {
-        return paginaList.size();
+        int totalePagine=paginaList.size();
+        for(Sezione sezione :sottoSezioni){
+            totalePagine += sezione.getNumeroPagine();
+
+    }
+        return totalePagine;
+    }
+
+    @Override
+    public void stampa() {
+        System.out.println("Il numero di pagine della sezione è " + getNumeroPagine() );
+
     }
 }

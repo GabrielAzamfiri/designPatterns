@@ -20,11 +20,18 @@ public class CompositeRunner implements CommandLineRunner {
 
         Pagina pagina1 = new Pagina();
 
-        Sezione sezione = new Sezione(List.of(pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1));
-        Sezione sezione2 = new Sezione(List.of(pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1));
+        Sezione sezione = new Sezione(List.of(pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1),List.of());
 
-        libro.setSezioneList(List.of(sezione,sezione,sezione,sezione,sezione2,sezione2));
+        Sezione sezione2 = new Sezione(List.of(pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1), List.of(sezione));
+
+        Sezione sezione3 = new Sezione(List.of(pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1,pagina1),List.of(sezione2,sezione2));
+
+        libro.setSezioneList(List.of(sezione,sezione,sezione,sezione,sezione2,sezione2, sezione3));
 
         System.out.println("Il Libro ha " + libro.getTotalePagine() + " pagine!");
+
+        sezione3.stampa();
+        pagina1.stampa();
+
     }
 }
